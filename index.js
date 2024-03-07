@@ -55,6 +55,8 @@ const dbConnect = async () => {
 
     const BlogsCollection = client.db("Zestify").collection("Blogs");
 
+    const MenuCollection = client.db("Zestify").collection("Menu");
+
 
 
 
@@ -78,7 +80,7 @@ const dbConnect = async () => {
         });
         
 
-        
+
 
     await client.connect();
     console.log("Database Connected!");
