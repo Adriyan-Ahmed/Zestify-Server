@@ -56,6 +56,18 @@ const dbConnect = async () => {
     const BlogsCollection = client.db("Zestify").collection("Blogs");
 
 
+
+
+        app.get("/api/v1/blogs", async (req, res) => {
+          
+          const result = await BlogsCollection.find().toArray();
+
+          res.send(result);
+        });
+
+
+        
+
     await client.connect();
     console.log("Database Connected!");
   } catch (error) {
