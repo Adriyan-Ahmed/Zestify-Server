@@ -67,6 +67,7 @@ const dbConnect = async () => {
           res.send(result);
         });
 
+        
 
 
         app.get("/api/v1/blog", async (req, res) => {
@@ -78,8 +79,16 @@ const dbConnect = async () => {
 
           res.send(result);
         });
-        
 
+
+
+
+        app.get("/api/v1/menu", async (req, res) => {
+          const result = await MenuCollection.find().toArray();
+
+          res.send(result);
+        });
+        
 
 
     await client.connect();
