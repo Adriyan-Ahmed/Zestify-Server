@@ -88,6 +88,18 @@ const dbConnect = async () => {
 
           res.send(result);
         });
+
+
+
+        app.get("/api/v1/food", async (req, res) => {
+          const id = req.query.id;
+          
+          const query = { _id: new ObjectId(id) };
+          
+          const result = await MenuCollection.findOne(query);
+          
+          res.send(result);
+        });
         
 
 
