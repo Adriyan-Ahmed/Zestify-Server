@@ -59,12 +59,24 @@ const dbConnect = async () => {
 
 
         app.get("/api/v1/blogs", async (req, res) => {
-          
+
           const result = await BlogsCollection.find().toArray();
 
           res.send(result);
         });
 
+
+
+        app.get("/api/v1/blog", async (req, res) => {
+          const id = req.query.id;
+
+          const query = { _id: new ObjectId(id) };
+
+          const result = await BlogsCollection.findOne(query);
+
+          res.send(result);
+        });
+        
 
         
 
