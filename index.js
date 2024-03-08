@@ -90,6 +90,20 @@ const dbConnect = async () => {
         });
 
 
+        app.get("/api/v2/menu", async (req, res) => {
+
+          const category = req.query.category;
+
+          let query = {};
+          if(category){
+            query = {category : category};
+          }
+          const result = await MenuCollection.find(query).toArray();
+
+          res.send(result);
+        });
+
+
 
         app.get("/api/v1/food", async (req, res) => {
           const id = req.query.id;
