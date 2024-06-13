@@ -56,6 +56,8 @@ const dbConnect = async () => {
     const BlogsCollection = client.db("Zestify").collection("Blogs");
 
     const MenuCollection = client.db("Zestify").collection("Menu");
+    
+    const UserCollection = client.db("Zestify").collection("Users");
 
 
 
@@ -114,6 +116,33 @@ const dbConnect = async () => {
           
           res.send(result);
         });
+
+
+        app.post("/api/v1/user", async (req, res) => {
+
+          const user = req.body;
+
+            const query = {email: user.email, pass: user.pass};
+
+            const get = await UserCollection.findOne(query);
+
+            console.log(get);
+
+            if (get?.email) {
+
+              res.send('Account already exist');
+
+              return;
+
+          } else {
+
+              const result = await UserCollection.insertOne(user);
+
+              res.send(result);
+          
+          }
+
+        })
         
 
 
