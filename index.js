@@ -120,6 +120,18 @@ const dbConnect = async () => {
         });
 
 
+
+        app.get('/api/v1/cart', async ( req, res ) => {
+          const email = req.query.email;
+
+          const query = { email:email };
+
+          const result = await ShoppingCart.find(query).toArray();
+
+          res.send(result)
+        })
+
+
         app.post("/api/v1/user", async (req, res) => {
 
           const user = req.body;
