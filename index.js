@@ -59,6 +59,8 @@ const dbConnect = async () => {
     
     const UserCollection = client.db("Zestify").collection("Users");
 
+    const ShoppingCart = client.db("Zestify").collection("Cart");
+
 
 
 
@@ -141,6 +143,19 @@ const dbConnect = async () => {
               res.send(result);
           
           }
+
+        })
+
+
+        app.post('/api/v1/cart', async (req, res) => {
+          
+          const product = req.body;
+
+          console.log(product);
+          
+          const result = await ShoppingCart.insertOne(product);
+
+          res.send(result);
 
         })
         
